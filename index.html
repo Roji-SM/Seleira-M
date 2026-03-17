@@ -98,12 +98,12 @@ function typeText(text, callback) {
   }, 25);
 }
 
-  function randomPosition() {
-  const x = Math.random() * 80; // 0% to 80%
-  const y = Math.random() * 60; // 0% to 60%
+ function randomPosition() {
+  const x = 10 + Math.random() * 60; // 10% to 70%
+  const y = 20 + Math.random() * 50; // 20% to 70%
   return `position:absolute; left:${x}%; top:${y}%;`;
 }
-
+  
 function render() {
   const app = document.getElementById('app');
   const body = document.body;
@@ -135,7 +135,7 @@ function render() {
       <img src="meme1.jpg">
       <p>I know that you're still thinking about what happened talaga but will you ever forgive me?</p>
       <button class="green" onclick="yesPath()">yes</button>
-      <button class="red" style="${randomPosition()}" onclick="next()">no</button>
+      <button class="red" style="${randomPosition()}" onclick="noPath1()">no</button>
       </div>`;
   }
 
@@ -162,7 +162,7 @@ function render() {
     <img src="meme3.jpg">
     <p>huhuuu my honey bunch sugar plum ayaw mo talaga?</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay fine</button>
-     <button class="red" style="${randomPosition()}" onclick="next()">still no</button>
+    <button class="red" style="${randomPosition()}" onclick="next()">still no</button>
     </div>`;
   }
 
@@ -173,7 +173,7 @@ function render() {
     <img src="meme4.jpg">
     <p>eto nalang, kiss kita marami hehe</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay, yung may tunog ha?</button>
-     <button class="red" style="${randomPosition()}" onclick="next()">ayoko</button>
+    <button class="red" style="${randomPosition()}" onclick="next()">ayoko</button>
     </div>`;
   }
 
