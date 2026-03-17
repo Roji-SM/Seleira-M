@@ -141,7 +141,8 @@ function render() {
 
   else if(step === 5) {
     body.classList.add('pink-bg');
-    app.innerHTML = `<div class="fade"><p>really?</p>
+    <img src="meme9.jpg">
+    app.innerHTML = `<div class="fade"><p>reaaally? yeeeey</p>
     <button class="green big" onclick="finalPage()">yes</button></div>`;
   }
 
@@ -192,6 +193,7 @@ function render() {
     body.classList.add('pink-bg');
     yesSize += 0.3;
     app.innerHTML = `<div class="fade">
+    <img src="meme6.jpg">
     <p>please, I'm sorry na uwu U A U A U A</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="forceYes()">yes</button>
     <button class="red" style="${randomPosition()}" onclick="next()">no</button>
@@ -200,12 +202,14 @@ function render() {
 
   else if(step === 11) {
     body.classList.add('pink-bg');
+    <img src="meme7.jpg">
     app.innerHTML = `<div class="fade"><p>hmp, okay you leave me no choice</p>
     <button onclick="next()">continue</button></div>`;
   }
 
   else if(step === 12) {
     body.classList.add('pink-bg');
+    <img src="meme8.jpg">
     app.innerHTML = `<div class="fade"><p>:P</p>
     <button class="green big" onclick="finalPage()">yes</button>
     <button class="green big" onclick="finalPage()">yes</button></div>`;
@@ -220,6 +224,7 @@ function forceYes() { step = 11; render(); }
 function finalPage() {
   const app = document.getElementById('app');
   document.body.classList.add('pink-bg');
+  <img src="lovepicture.jpg">
   app.innerHTML = `
     <div class="fade">
     <h2>I'm really sorry ❤️</h2>
