@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Seleira ❤️</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: black;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .container { max-width: 90%; }
+  button {
+    padding: 12px 22px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .green { background: #4CAF50; color: white; }
+  .red { background: #ff4d4d; color: white; position: relative; }
+  .big { transform: scale(1.2); }
+
+  .fade { animation: fadeIn 0.6s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px);} 
+    to { opacity: 1; transform: translateY(0);} 
+  }
+
+  .heart {
+    position: fixed;
+    top: -10px;
+    color: pink;
+    font-size: 20px;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh); }
+  }
+
+  img { max-width: 80%; border-radius: 15px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="container" id="app">
+  <button onclick="start()">click me</button>
+</div>
+
+<script>
+let step = 0;
+let yesSize = 1;
+
+function start() {
+  step = 1;
+  render();
+  startHearts();
+}
+
+function typeText(text, callback) {
+  let i = 0;
+  const app = document.getElementById('app');
+  app.innerHTML = `<p id="typing"></p>`;
+  const el = document.getElementById('typing');
+
+  const interval = setInterval(() => {
+    el.innerHTML += text[i];
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+      if(callback) callback();
+    }
+  }, 25);
+}
+
+function render() {
+  const app = document.getElementById('app');
+
+  if(step === 1) {
+    typeText("Hi Seleira, I know that I've been making loads of mistakes lately.", () => {
+      app.innerHTML += `<br><button onclick="next()">continue</button>`;
+    });
+  }
+
+  else if(step === 2) {
+    typeText("I don't know lately naging lazy ako and nakakatulog ako often buntis ata ako eh.", () => {
+      app.innerHTML += `<br><button onclick="next()">continue</button>`;
+    });
+  }
+
+  else if(step === 3) {
+    typeText("Kidding aside, wala man akong masyadong mabigay talaga but I know what to do to bawi and change myself into a better man.", () => {
+      app.innerHTML += `<br><button onclick="next()">continue</button>`;
+    });
+  }
+
+  else if(step === 4) {
+    typeText("I know that you're still thinking about what happened talaga but will you ever forgive me?", () => {
+      app.innerHTML += `
+        <br>
+        <button class="green" onclick="yesPath()">yes</button>
+        <button class="red" onclick="noPath1(this)">no</button>`;
+    });
+  }
+
+  else if(step === 5) {
+    app.innerHTML = `<div class="fade"><p>really?</p>
+    <button class="green big" onclick="finalPage()">yes</button></div>`;
+  }
+
+  else if(step === 6) {
+    app.innerHTML = `<div class="fade"><p>really? huhu whyyy</p>
+    <button class="green big" onclick="yesPath()">okay fine</button>
+    <button class="red" onmouseover="moveButton(this)">still no</button></div>`;
+  }
+
+  else if(step === 7) {
+    yesSize += 0.2;
+    app.innerHTML = `<div class="fade"><p>huhuuu my honey bunch sugar plum ayaw mo talaga?</p>
+    <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay fine</button>
+    <button class="red" onmouseover="moveButton(this)">still no</button></div>`;
+  }
+
+  else if(step === 8) {
+    yesSize += 0.2;
+    app.innerHTML = `<div class="fade"><p>eto nalang, kiss kita marami hehe</p>
+    <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay, yung may tunog ha?</button>
+    <button class="red" onmouseover="moveButton(this)">ayoko</button></div>`;
+  }
+
+  else if(step === 9) {
+    yesSize += 0.2;
+    app.innerHTML = `<div class="fade"><p>huhuuuu whhyyyyy I'm sorry naaa pleaseee</p>
+    <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">yes</button>
+    <button class="red" onmouseover="moveButton(this)">no</button></div>`;
+  }
+
+  else if(step === 10) {
+    yesSize += 0.3;
+    app.innerHTML = `<div class="fade"><p>please, I'm sorry na uwu U A U A U A</p>
+    <button class="green" style="transform: scale(${yesSize})" onclick="forceYes()">yes</button>
+    <button class="red" onclick="next()">no</button></div>`;
+  }
+
+  else if(step === 11) {
+    app.innerHTML = `<div class="fade"><p>hmp, okay you leave me no choice</p>
+    <button onclick="next()">continue</button></div>`;
+  }
+
+  else if(step === 12) {
+    app.innerHTML = `<div class="fade"><p>:P</p>
+    <button class="green big" onclick="finalPage()">yes</button>
+    <button class="green big" onclick="finalPage()">yes</button></div>`;
+  }
+}
+
+function next() { step++; render(); }
+function yesPath() { step = 5; render(); }
+function noPath1() { step = 6; render(); }
+function forceYes() { step = 11; render(); }
+
+function moveButton(btn) {
+  btn.style.position = 'absolute';
+  btn.style.top = Math.random() * 80 + '%';
+  btn.style.left = Math.random() * 80 + '%';
+}
+
+function finalPage() {
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <div class="fade">
+    <h2>I'm really sorry ❤️</h2>
+    <p>
+    Seleira, I know I hurt you and I regret it so much...<br><br>
+    I'm trying to change and be better for you, because you mean everything to me.<br><br>
+    Thank you for staying. I love you always.
+    </p>
+
+    <img src="your-image1.jpg">
+    <img src="your-image2.jpg">
+
+    <audio controls autoplay loop>
+      <source src="tugon.mp3" type="audio/mpeg">
+    </audio>
+    </div>
+  `;
+}
+
+function startHearts() {
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '💖';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 8000);
+  }, 300);
+}
+</script>
+</body>
+</html>
