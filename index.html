@@ -1,77 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Seleira ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-
-<style>
-  body {
-    margin: 0;
-    font-family: 'Quicksand', sans-serif;
-    background: black;
-    color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    transition: background 0.5s ease;
-  }
-
-  .pink-bg {
-    background: linear-gradient(to bottom, #ff9eb5, #ffd6e0);
-    color: #5a0033;
-  }
-
-  .container { max-width: 90%; }
-
-  button {
-    padding: 12px 22px;
-    margin: 10px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .green { background: #ff6f91; color: white; }
-  .red { background: #ff4d4d; color: white; }
-
-  .big { transform: scale(1.2); }
-
-  .fade { animation: fadeIn 0.6s ease; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px);} 
-    to { opacity: 1; transform: translateY(0);} 
-  }
-
-  .heart {
-    position: fixed;
-    top: -10px;
-    color: pink;
-    font-size: 20px;
-    animation: fall linear infinite;
-  }
-  @keyframes fall {
-    to { transform: translateY(110vh); }
-  }
-
-  img { max-width: 80%; border-radius: 15px; margin-top: 15px; }
-</style>
-</head>
-<body>
-<div class="container" id="app">
-  <button onclick="start()">click me</button>
-</div>
-
 <script>
 let step = 0;
 let yesSize = 1;
+let noSize = 1; // 👈 controls shrinking
 
 function start() {
   step = 1;
@@ -93,6 +23,22 @@ function typeText(text, callback) {
       if(callback) callback();
     }
   }, 25);
+}
+
+// 🎯 random position
+function randomPosition() {
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 60);
+  return `left:${x}px; top:${y}px;`;
+}
+
+// ❌ shrinking NO button
+function noBtn(label="no", action="next()") {
+  return `<button class="red random-no" 
+    style="${randomPosition()}; transform: scale(${noSize})"
+    onclick="${action}">
+    ${label}
+  </button>`;
 }
 
 function render() {
@@ -126,7 +72,7 @@ function render() {
       <img src="meme1.jpg">
       <p>I know that you're still thinking about what happened talaga but will you ever forgive me?</p>
       <button class="green" onclick="yesPath()">yes</button>
-      <button class="red" onclick="noPath1()">no</button>
+      ${noBtn("no", "noPath1()")}
       </div>`;
   }
 
@@ -138,54 +84,59 @@ function render() {
 
   else if(step === 6) {
     body.classList.add('pink-bg');
+    noSize -= 0.15; // 👈 shrink
     app.innerHTML = `<div class="fade">
     <img src="meme2.jpg">
     <p>really? huhu whyyy</p>
     <button class="green big" onclick="yesPath()">okay fine</button>
-    <button class="red" onclick="next()">still no</button>
+    ${noBtn("still no")}
     </div>`;
   }
 
   else if(step === 7) {
     body.classList.add('pink-bg');
     yesSize += 0.2;
+    noSize -= 0.15;
     app.innerHTML = `<div class="fade">
     <img src="meme3.jpg">
     <p>huhuuu my honey bunch sugar plum ayaw mo talaga?</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay fine</button>
-    <button class="red" onclick="next()">still no</button>
+    ${noBtn("still no")}
     </div>`;
   }
 
   else if(step === 8) {
     body.classList.add('pink-bg');
     yesSize += 0.2;
+    noSize -= 0.15;
     app.innerHTML = `<div class="fade">
     <img src="meme4.jpg">
     <p>eto nalang, kiss kita marami hehe</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay, yung may tunog ha?</button>
-    <button class="red" onclick="next()">ayoko</button>
+    ${noBtn("ayoko")}
     </div>`;
   }
 
   else if(step === 9) {
     body.classList.add('pink-bg');
     yesSize += 0.2;
+    noSize -= 0.15;
     app.innerHTML = `<div class="fade">
     <img src="meme5.jpg">
     <p>huhuuuu whhyyyyy I'm sorry naaa pleaseee</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">yes</button>
-    <button class="red" onclick="next()">no</button>
+    ${noBtn("no")}
     </div>`;
   }
 
   else if(step === 10) {
     body.classList.add('pink-bg');
     yesSize += 0.3;
+    noSize -= 0.2;
     app.innerHTML = `<div class="fade">
     <p>please, I'm sorry na uwu U A U A U A</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="forceYes()">yes</button>
-    <button class="red" onclick="next()">no</button>
+    ${noBtn("no")}
     </div>`;
   }
 
@@ -243,5 +194,3 @@ function startHearts() {
   }, 300);
 }
 </script>
-</body>
-</html>
