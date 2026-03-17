@@ -27,7 +27,10 @@
     color: #5a0033;
   }
 
-  .container { max-width: 90%; }
+  .container {
+  max-width: 90%;
+  position: relative; /* ADD THIS */
+}
 
   button {
     padding: 12px 22px;
@@ -96,9 +99,9 @@ function typeText(text, callback) {
 }
 
   function randomPosition() {
-  const x = Math.random() * 60 - 30; // -30% to +30%
-  const y = Math.random() * 60 - 30;
-  return `transform: translate(${x}px, ${y}px);`;
+  const x = Math.random() * 80; // 0% to 80%
+  const y = Math.random() * 60; // 0% to 60%
+  return `position:absolute; left:${x}%; top:${y}%;`;
 }
 
 function render() {
