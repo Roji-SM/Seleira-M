@@ -133,17 +133,20 @@ function render() {
   }
 
   else if(step === 5) {
+    body.classList.add('pink-bg');
     app.innerHTML = `<div class="fade"><p>really?</p>
     <button class="green big" onclick="finalPage()">yes</button></div>`;
   }
 
   else if(step === 6) {
+    body.classList.add('pink-bg');
     app.innerHTML = `<div class="fade"><p>really? huhu whyyy</p>
     <button class="green big" onclick="yesPath()">okay fine</button>
     <button class="red" onclick="next()" onmouseover="moveButton(this)">still no</button></div>`;
   }
 
   else if(step === 7) {
+    body.classList.add('pink-bg');
     yesSize += 0.2;
     app.innerHTML = `<div class="fade"><p>huhuuu my honey bunch sugar plum ayaw mo talaga?</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay fine</button>
@@ -151,6 +154,7 @@ function render() {
   }
 
   else if(step === 8) {
+    body.classList.add('pink-bg');
     yesSize += 0.2;
     app.innerHTML = `<div class="fade"><p>eto nalang, kiss kita marami hehe</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay, yung may tunog ha?</button>
@@ -158,6 +162,7 @@ function render() {
   }
 
   else if(step === 9) {
+    body.classList.add('pink-bg');
     yesSize += 0.2;
     app.innerHTML = `<div class="fade"><p>huhuuuu whhyyyyy I'm sorry naaa pleaseee</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">yes</button>
@@ -165,6 +170,7 @@ function render() {
   }
 
   else if(step === 10) {
+    body.classList.add('pink-bg');
     yesSize += 0.3;
     app.innerHTML = `<div class="fade"><p>please, I'm sorry na uwu U A U A U A</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="forceYes()">yes</button>
@@ -172,11 +178,13 @@ function render() {
   }
 
   else if(step === 11) {
+    body.classList.add('pink-bg');
     app.innerHTML = `<div class="fade"><p>hmp, okay you leave me no choice</p>
     <button onclick="next()">continue</button></div>`;
   }
 
   else if(step === 12) {
+    body.classList.add('pink-bg');
     app.innerHTML = `<div class="fade"><p>:P</p>
     <button class="green big" onclick="finalPage()">yes</button>
     <button class="green big" onclick="finalPage()">yes</button></div>`;
