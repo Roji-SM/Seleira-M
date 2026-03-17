@@ -60,6 +60,10 @@
   @keyframes fall {
     to { transform: translateY(110vh); }
   }
+  
+  .random-no {
+  position: fixed; /* 🔥 important fix for Netlify */
+}
 
   img { max-width: 80%; border-radius: 15px; margin-top: 15px; }
 </style>
@@ -70,8 +74,10 @@
 </div>
 
 <script>
+<script>
 let step = 0;
 let yesSize = 1;
+let noSize = 1;
 
 function start() {
   step = 1;
@@ -93,6 +99,23 @@ function typeText(text, callback) {
       if(callback) callback();
     }
   }, 25);
+}
+
+// 🎯 random position
+function randomPosition() {
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 60);
+  return { x, y };
+}
+
+// ❌ create NO button safely
+function createNoButton(label, actionFunc) {
+  const pos = randomPosition();
+  return `<button class="red random-no"
+    style="left:${pos.x}px; top:${pos.y}px; transform: scale(${noSize});"
+    onclick="${actionFunc}">
+    ${label}
+  </button>`;
 }
 
 function render() {
@@ -126,7 +149,7 @@ function render() {
       <img src="meme1.jpg">
       <p>I know that you're still thinking about what happened talaga but will you ever forgive me?</p>
       <button class="green" onclick="yesPath()">yes</button>
-      <button class="red" onclick="noPath1()">no</button>
+      ${createNoButton("no", "noPath1()")}
       </div>`;
   }
 
@@ -138,54 +161,59 @@ function render() {
 
   else if(step === 6) {
     body.classList.add('pink-bg');
+    noSize -= 0.15;
     app.innerHTML = `<div class="fade">
     <img src="meme2.jpg">
     <p>really? huhu whyyy</p>
     <button class="green big" onclick="yesPath()">okay fine</button>
-    <button class="red" onclick="next()">still no</button>
+    ${createNoButton("still no", "next()")}
     </div>`;
   }
 
   else if(step === 7) {
     body.classList.add('pink-bg');
     yesSize += 0.2;
+    noSize -= 0.15;
     app.innerHTML = `<div class="fade">
     <img src="meme3.jpg">
     <p>huhuuu my honey bunch sugar plum ayaw mo talaga?</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay fine</button>
-    <button class="red" onclick="next()">still no</button>
+    ${createNoButton("still no", "next()")}
     </div>`;
   }
 
   else if(step === 8) {
     body.classList.add('pink-bg');
     yesSize += 0.2;
+    noSize -= 0.15;
     app.innerHTML = `<div class="fade">
     <img src="meme4.jpg">
     <p>eto nalang, kiss kita marami hehe</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">okay, yung may tunog ha?</button>
-    <button class="red" onclick="next()">ayoko</button>
+    ${createNoButton("ayoko", "next()")}
     </div>`;
   }
 
   else if(step === 9) {
     body.classList.add('pink-bg');
     yesSize += 0.2;
+    noSize -= 0.15;
     app.innerHTML = `<div class="fade">
     <img src="meme5.jpg">
     <p>huhuuuu whhyyyyy I'm sorry naaa pleaseee</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="yesPath()">yes</button>
-    <button class="red" onclick="next()">no</button>
+    ${createNoButton("no", "next()")}
     </div>`;
   }
 
   else if(step === 10) {
     body.classList.add('pink-bg');
     yesSize += 0.3;
+    noSize -= 0.2;
     app.innerHTML = `<div class="fade">
     <p>please, I'm sorry na uwu U A U A U A</p>
     <button class="green" style="transform: scale(${yesSize})" onclick="forceYes()">yes</button>
-    <button class="red" onclick="next()">no</button>
+    ${createNoButton("no", "next()")}
     </div>`;
   }
 
@@ -242,6 +270,7 @@ function startHearts() {
     setTimeout(() => heart.remove(), 8000);
   }, 300);
 }
+  
 </script>
 </body>
 </html>
